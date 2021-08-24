@@ -191,7 +191,18 @@ function CreateProfile() {
 
   async function handleSubmit() {
     //store user profileData
-    storeUserProfile(profileData, ProfilePicture, user);
+    // storeUserProfile(profileData, ProfilePicture, user);
+    try {
+      await db.collection(user.nickname).doc("profile").set(userProfile);
+
+      if (ProfilePicture) {
+        const storageRef = storage.ref();
+        const imageRef = storageRef.child(ProfilePicture.name);
+        imageRef.put(ProfilePicture).then(console.log("Image Uplaoded"));
+      }
+    } catch (err) {
+      console.log(err);
+    }
 
     //replace the default profileImage with Uploaded one's url
     var path = storage.ref(user.nickname);
