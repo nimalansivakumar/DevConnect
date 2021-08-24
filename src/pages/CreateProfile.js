@@ -108,6 +108,8 @@ function CreateProfile() {
     "MongoDB",
   ];
 
+  console.log(profileData);
+
   useEffect(() => {
     toast(
       "Make sure you fill all the fields for proper display of your profile.",
@@ -189,7 +191,6 @@ function CreateProfile() {
 
   async function handleSubmit() {
     //store user profileData
-    storeUserProfile(profileData, ProfilePicture, user);
 
     //replace the default profileImage with Uploaded one's url
     var path = storage.ref(user.nickname);
@@ -199,11 +200,17 @@ function CreateProfile() {
       .update({ picture: await path.getDownloadURL() });
 
     //
-    await db.collection("users").doc(user.nickname).update({
-      name: profileData.name,
-      currentPosition: profileData.currentPosition,
-      isProfileCreated: true,
-    });
+    await db
+      .collection("users")
+      .doc(user.nickname)
+      .update({
+        name: profileData.name,
+        currentPosition: profileData.currentPosition,
+        isProfileCreated: true,
+      })
+      .then("Doc Updated");
+
+    storeUserProfile(profileData, ProfilePicture, user);
 
     toast.success("Successfully submitted.");
   }
