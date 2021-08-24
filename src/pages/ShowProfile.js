@@ -130,6 +130,7 @@ function Profile({ viewProfile }) {
                 className="m-5"
                 network={item.name}
                 url={item.link}
+                target="_blank"
                 bgColor={item.name === "instagram" ? "#833AB4" : null}
               ></SocialIcon>
             ))}
