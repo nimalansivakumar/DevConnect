@@ -110,7 +110,7 @@ function Profile({ viewProfile }) {
                 href={blog.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-64 min-h-24 h-full border-2 border-secondary-200 text-secondary-100 my-3 text-center bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
+                className="w-64 min-h-30 h-full border-2 border-secondary-200 text-secondary-100 my-3 text-center bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
               >
                 <h2 className="font-pop text-xl p-2">{blog.name}</h2>
               </a>
