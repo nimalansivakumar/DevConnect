@@ -191,6 +191,7 @@ function CreateProfile() {
 
   async function handleSubmit() {
     //store user profileData
+    storeUserProfile(profileData, ProfilePicture, user);
 
     //replace the default profileImage with Uploaded one's url
     var path = storage.ref(user.nickname);
@@ -209,8 +210,6 @@ function CreateProfile() {
         isProfileCreated: true,
       })
       .then("Doc Updated");
-
-    storeUserProfile(profileData, ProfilePicture, user);
 
     toast.success("Successfully submitted.");
   }
