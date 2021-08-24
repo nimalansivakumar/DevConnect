@@ -189,9 +189,7 @@ function CreateProfile() {
 
   async function handleSubmit() {
     //store user profileData
-    storeUserProfile(profileData, ProfilePicture, user).then(
-      toast.success("Successfully submitted.")
-    );
+    storeUserProfile(profileData, ProfilePicture, user);
 
     //replace the default profileImage with Uploaded one's url
     var path = storage.ref(user.nickname);
@@ -206,6 +204,8 @@ function CreateProfile() {
       currentPosition: profileData.currentPosition,
       isProfileCreated: true,
     });
+
+    toast.success("Successfully submitted.");
   }
 
   function GenerateDate() {
