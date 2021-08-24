@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import fire from "../components/firebase";
 import { useAuth0 } from "@auth0/auth0-react";
-import toast from "react-hot-toast";
 
 const db = fire.firestore();
 const storageRef = fire.storage();
