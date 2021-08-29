@@ -16,7 +16,7 @@
 
 # Build With 💻
 
-- [React JS](https://reactjs.org/) - for Fronted
+- [React JS](https://reactjs.org/) - for Frontend
 - [Tailwind CSS](https://tailwindcss.com/) - for styling
 - [Firebase](https://firebase.google.com/) - for database
 - [Auth0](https://auth0.com/) - for user authentication
@@ -35,5 +35,4 @@
 # Connect with me 🌐
  
 - [Twitter](https://twitter.com/Nimalan_) 
-- [Github](https://github.com/nimalansivakumar) 
 - [LinkedIn](https://www.linkedin.com/in/nimalan-sivakumar-743507203/)
