@@ -11,7 +11,7 @@
 [DevConnect](https://dev-connect.vercel.app/) is an app for developers to know about each other and their inspiring works. It comes with developer profiles that consists of his/her little personal details and lot of professional details like current designation, tech skills, projects, blogs, social media handles.
 
 
-> [Live Demo](https://dev-connect.vercel.app/)
+> [Live Demo](https://dev-connect.vercel.app/) /
 > [Read Blog]()
 
 # Build With 💻
