@@ -69,9 +69,13 @@ function Home() {
       <footer className="w-full h-10 flex justify-center items-center">
         <h1 className="font-pop text-xl text-secondary-100">
           Made by{" "}
-          <a href="https://www.twitter.com/Nimalan_" className="underline">
+          <a
+            href="https://www.twitter.com/Nimalan_"
+            className="underline"
+            target="_blank"
+          >
             Nimalan
-          </a>{" "}
+          </a>
           with ❤️
         </h1>
       </footer>
