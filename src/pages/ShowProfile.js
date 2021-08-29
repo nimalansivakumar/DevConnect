@@ -86,14 +86,14 @@ function Profile({ viewProfile }) {
           </div>
 
           <h1 className="font-nunito text-secondary-100 text-3xl">Projects</h1>
-          <div className="max-w-2xl w-full h-auto my-10 grid grid-cols-2 justify-items-center mr:grid-cols-1">
+          <div className="max-w-2xl w-full h-auto my-10 grid grid-cols-2 justify-items-center gap-y-10 mr:grid-cols-1">
             {fetchedProfile.projects.map((project, key) => (
               <a
                 key={key}
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-64 min-h-3rem h-full border-2 border-secondary-200 text-secondary-100 my-3 flex flex-col bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
+                className="w-64 min-h-3rem h-full border-2 border-secondary-200 text-secondary-100  flex flex-col bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
               >
                 <h2 className="font-nunito text-2xl p-2">{project.name}</h2>
                 <h3 className="font-pop text-sm px-2">{project.desc}</h3>
@@ -102,14 +102,14 @@ function Profile({ viewProfile }) {
           </div>
 
           <h1 className="font-nunito text-secondary-100 text-3xl">Blogs</h1>
-          <div className="max-w-2xl w-full h-auto my-10 grid grid-cols-2 justify-items-center mr:grid-cols-1">
+          <div className="max-w-2xl w-full h-auto my-10 grid grid-cols-2 gap-y-10  justify-items-center mr:grid-cols-1">
             {fetchedProfile.blogs.map((blog, key) => (
               <a
                 key={key}
                 href={blog.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-64 min-h-3rem h-full border-2 border-secondary-200 text-secondary-100 my-3 text-center bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
+                className="w-64 min-h-3rem h-full border-2 border-secondary-200 text-secondary-100 text-center bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
               >
                 <h2 className="font-pop text-xl p-2">{blog.name}</h2>
               </a>

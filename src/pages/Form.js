@@ -18,8 +18,8 @@ function Form({
   return (
     <div className="w-full h-auto bg-secondary-300 flex items-center justify-center">
       <Toaster></Toaster>
-      <div className="max-w-7xl w-full h-auto text-secondary-100 flex flex-col items-center bg-white mx-5 my-10 rounded-2xl shadow-md">
-        <div className="w-full h-14 flex justify-between">
+      <div className="max-w-7xl w-full h-auto text-secondary-100 flex flex-col items-center bg-white mx-10 my-10 rounded-2xl shadow-md">
+        <div className="w-full h-14">
           <Link to="/dashboard">
             <ArrowLeftIcon className="w-8 text-secondary-100 m-2" />
           </Link>
@@ -95,8 +95,7 @@ function Form({
         <div className="max-w-md w-full min-h-200 h-full rounded-lg bg-secondary-300 m-5 text-secondary-100 font-pop flex flex-col justify-around text-center items-center">
           <p className="text-secondary-200">{GenerateDate()}</p>
           <textarea
-            className="px-2 text-xl text-center bg-transparent outline-none rounded-lg"
-            cols="40"
+            className="w-3/4 h-full text-xl text-center bg-transparent outline-none rounded-lg"
             rows="5"
             placeholder="Descirbe your status"
             onChange={(e) =>
@@ -162,7 +161,7 @@ function Form({
               }}
             ></input>
             <textarea
-              className="w-full h-10 font-pop text-sm p-2 bg-fade outline-none rounded-lg"
+              className="w-full h-10 font-pop text-sm bg-fade outline-none rounded-lg"
               rows="5"
               placeholder="Project Description"
               onChange={(e) => {
@@ -259,7 +258,7 @@ function Form({
 
           <div className="w-auto h-auto text-secondary-100 my-3 flex flex-col bg-white rounded">
             <input
-              className="w-full h-10 font-nunito text-2xl p-2 bg-fade outline-none my-1 rounded-lg"
+              className="w-full h-10 font-nunito text-2xl bg-fade outline-none my-1 rounded-lg"
               placeholder="Blog Name"
               onChange={(e) => {
                 stateFuntions.updateObjectState(
@@ -288,16 +287,16 @@ function Form({
         <h2 className="font-nunito text-secondary-100 text-xl">
           Connect with me!
         </h2>
-        <div className="max-w-sm w-full h-auto m-10 flex flex-col mr:grid-cols-3">
+        <div className="max-w-sm w-full h-auto m-10 flex flex-col justify-center items-center">
           <input
-            className="w-full h-10 font-nunito text-lg p-2 bg-fade outline-none my-1 font-pop rounded-lg"
+            className="w-full h-10 font-nunito text-lg bg-fade outline-none p-2 my-1 font-pop rounded-lg"
             placeholder="Twitter Link"
             onChange={(e) => {
               stateFuntions.updateSocialLinks("twitter", e.target.value);
             }}
           ></input>
           <input
-            className="w-full h-10 font-nunito text-lg p-2 bg-fade outline-none my-1 font-pop rounded-lg"
+            className="w-full h-10 font-nunito text-lg  bg-fade outline-none  p-2 my-1 font-pop rounded-lg "
             placeholder="Facebook Link"
             onChange={(e) => {
               stateFuntions.updateSocialLinks("facebook", e.target.value);
@@ -348,7 +347,7 @@ function Form({
         </div>
         <div className="w-auto flex">
           <button
-            className="w-24 h-10 m-3 flex bg-primary rounded text-white font-pop justify-around items-center cursor-pointer"
+            className="w-24 h-10 m-3 flex bg-primary rounded text-white font-pop justify-around items-center cursor-pointer "
             onClick={() => {
               toast.promise(handleSubmit(), {
                 loading: "Saving...",
