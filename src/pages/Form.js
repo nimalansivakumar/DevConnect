@@ -161,7 +161,7 @@ function Form({
               }}
             ></input>
             <textarea
-              className="w-full h-10 font-pop text-sm bg-fade outline-none rounded-lg"
+              className="w-full h-10 font-pop p-2 text-sm bg-fade outline-none rounded-lg"
               rows="5"
               placeholder="Project Description"
               onChange={(e) => {
