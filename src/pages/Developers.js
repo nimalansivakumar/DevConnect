@@ -43,25 +43,23 @@ function Developers({ whosProfile }) {
     fetchFromDB();
   }, [user.nickname]);
   return (
-    <div>
-      <div className="w-full h-auto flex flex-col items-center justify-center">
-        <nav className="w-full h-auto text-secondary-100 flex flex-row justify-between items-center bg-secondary-300">
-          <h2 className="text-3xl font-nunito  mx-10">Profiles</h2>
-        </nav>
+    <div className="w-full h-auto flex flex-col items-center justify-center">
+      <nav className="w-full h-auto text-secondary-100 flex flex-row justify-between items-center bg-secondary-300">
+        <h2 className="text-3xl font-nunito  mx-10">Profiles</h2>
+      </nav>
 
-        {ProfileCreated === true ? (
-          <RenderProfiles
-            collectionList={collectionList}
-            whosProfile={whosProfile}
-          ></RenderProfiles>
-        ) : (
-          <div>
-            <h1 className="w-full text-center font-pop text-2xl m-10">
-              Create Your profile!
-            </h1>
-          </div>
-        )}
-      </div>
+      {ProfileCreated === true ? (
+        <RenderProfiles
+          collectionList={collectionList}
+          whosProfile={whosProfile}
+        ></RenderProfiles>
+      ) : (
+        <div>
+          <h1 className="w-full text-center font-pop text-2xl m-10">
+            Create Your profile!
+          </h1>
+        </div>
+      )}
     </div>
   );
 }
