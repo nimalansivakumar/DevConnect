@@ -41,7 +41,7 @@ function Developers({ whosProfile }) {
     };
 
     fetchFromDB();
-  }, []);
+  }, [user.nickname]);
   return (
     <div>
       <div className="w-full h-auto flex flex-col items-center justify-center">

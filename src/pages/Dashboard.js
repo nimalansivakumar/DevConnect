@@ -42,9 +42,15 @@ function Dashboard({ whosProfile }) {
             <button className="w-32 h-10 font-pop bg-primary text-white rounded my-2">
               <Link
                 onClick={() => {
-                  whosProfile(user.nickname);
+                  if (ProfileCreated) {
+                    whosProfile(user.nickname);
+                  } else {
+                    toast("Create Your Profile!", {
+                      icon: "🧑‍💻",
+                    });
+                  }
                 }}
-                to="/profile"
+                to={ProfileCreated ? "/profile" : "/dashboard"}
               >
                 My Profile
               </Link>{" "}

@@ -14,8 +14,7 @@ function Form({
   showImage,
   GenerateDate,
 }) {
-
-  console.log(profileData)
+  console.log(profileData);
   return (
     <div className="w-full h-auto bg-secondary-300 flex items-center justify-center">
       <Toaster></Toaster>
@@ -53,22 +52,22 @@ function Form({
         ></input>
         <input
           className="font-pop text-xl bg-fade text-secondary-100 outline-none text-center m-2 rounded-lg"
-          placeholder="designation"
+          placeholder="Designation"
           onChange={(e) =>
             profileSetter({ ...profileData, currentPosition: e.target.value })
           }
         ></input>
         <div
-          className="max-w-xs w-full h-10 font-pop text-secondary-200 flex justify-evenly items-center"
+          className="max-w-xs w-full h-auto font-pop text-secondary-200 flex flex-col justify-evenly items-center"
           id="tags"
         >
           <input
-            className="font-pop text-xl bg-fade text-secondary-100 outline-none text-center m-2 rounded-lg"
-            placeholder="Add tags(max 3)"
+            className="font-pop text-lg bg-fade text-secondary-100 outline-none text-center m-2 rounded-lg"
+            placeholder="Tags(max 3)"
             id="tagInput"
           ></input>
           <button
-            className="w-7 h-7 bg-secondary-300 rounded-lg"
+            className="w-7 h-7 bg-secondary-300 rounded-md"
             onClick={(e) => {
               e.preventDefault();
               if (profileData.tags.length < 3) {
@@ -93,7 +92,7 @@ function Form({
           </button>
         </div>
 
-        <div className="max-w-md w-full min-h-200 h-full rounded-lg bg-secondary-300 m-10 text-secondary-100 font-pop flex flex-col justify-around text-center items-center">
+        <div className="max-w-md w-full min-h-200 h-full rounded-lg bg-secondary-300 m-5 text-secondary-100 font-pop flex flex-col justify-around text-center items-center">
           <p className="text-secondary-200">{GenerateDate()}</p>
           <textarea
             className="px-2 text-xl text-center bg-transparent outline-none rounded-lg"
@@ -347,18 +346,20 @@ function Form({
             }}
           ></input>
         </div>
-        <button
-          className="w-24 h-10 m-3 flex bg-primary rounded text-white font-pop justify-around items-center cursor-pointer"
-          onClick={() => {
-            toast.promise(handleSubmit(), {
-              loading: "Saving...",
-              success: <b>Saved Successfully!</b>,
-              error: <b>Could not save.</b>,
-            });
-          }}
-        >
-          Submit
-        </button>
+        <div className="w-auto flex">
+          <button
+            className="w-24 h-10 m-3 flex bg-primary rounded text-white font-pop justify-around items-center cursor-pointer"
+            onClick={() => {
+              toast.promise(handleSubmit(), {
+                loading: "Saving...",
+                success: <b>Saved Successfully!</b>,
+                error: <b>Could not save.</b>,
+              });
+            }}
+          >
+            Submit
+          </button>
+        </div>
       </div>
     </div>
   );

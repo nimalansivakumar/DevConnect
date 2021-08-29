@@ -11,6 +11,7 @@ function Navbar() {
   const [openMenu, isMenuOpen] = useState(false);
   const [resMenu, isResMenu] = useState(false);
   const [ProfileImage, setProfileImage] = useState();
+  const [updateDOM, canUpdateDOM] = useState(false);
 
   useEffect(() => {
     const setUserProfileImage = async () => {
@@ -22,6 +23,7 @@ function Navbar() {
             .get()
             .then((doc) => {
               setProfileImage(doc.data().picture);
+              canUpdateDOM(true);
             });
         } catch (err) {
           console.log(err);
@@ -53,7 +55,7 @@ function Navbar() {
             <img
               alt="loginImage"
               className="w-10 mx-2 rounded-full"
-              src={ProfileImage}
+              src={updateDOM ? ProfileImage : ""}
               onClick={() => {
                 isMenuOpen(!openMenu);
               }}
@@ -73,7 +75,7 @@ function Navbar() {
           {isAuthenticated === true ? (
             <img
               className="w-10 mx-2 rounded-full"
-              src={ProfileImage}
+              src={updateDOM ? ProfileImage : ""}
               alt="ProfileImage"
               onClick={() => {
                 isResMenu(!resMenu);

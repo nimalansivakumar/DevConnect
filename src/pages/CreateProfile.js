@@ -191,29 +191,32 @@ function CreateProfile() {
         await fileRef.put(ProfilePicture).then((snapshot) => {
           console.log("Image Uploaded");
         });
+
+        await db
+          .collection("users")
+          .doc(user.nickname)
+          .update({
+            picture: await fileRef.getDownloadURL(),
+            name: profileData.name,
+            currentPosition: profileData.currentPosition,
+            isProfileCreated: true,
+          })
+          .then(() => {
+            console.log("Doc Updated");
+          });
+
+        await db
+          .collection(user.nickname)
+          .doc("profile")
+          .set(profileData)
+          .then(() => {
+            console.log("Profile Saved");
+          });
+      } else {
+        toast("Upload Profile Picture", {
+          icon: "👨🏻",
+        });
       }
-
-      // var path = storage.ref(user.nickname);
-      await db
-        .collection("users")
-        .doc(user.nickname)
-        .update({
-          picture: await fileRef.getDownloadURL(),
-          name: profileData.name,
-          currentPosition: profileData.currentPosition,
-          isProfileCreated: true,
-        })
-        .then(() => {
-          console.log("Doc Updated");
-        });
-
-      await db
-        .collection(user.nickname)
-        .doc("profile")
-        .set(profileData)
-        .then(() => {
-          console.log("Profile Saved");
-        });
     } catch (err) {
       console.log(err);
     }
