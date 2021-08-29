@@ -25,7 +25,9 @@ module.exports = {
         200: "200px",
         300: "300px",
         homeheight: "80vh",
-        30: "8rem",
+        10: "10rem",
+        "3rem": "3rem",
+        91: "91vh",
       },
       height: {
         91: "91vh",

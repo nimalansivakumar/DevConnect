@@ -27,9 +27,8 @@ function Profile({ viewProfile }) {
             .collection(viewProfile)
             .doc("profile")
             .get()
-            .then((result) => {
-              setFetchedProfile(result.data());
-              console.log(result.data());
+            .then((doc) => {
+              setFetchedProfile(doc.data());
               canUpdateDOM(true);
             });
         }
@@ -46,7 +45,7 @@ function Profile({ viewProfile }) {
       {updateDOM === true ? (
         <div className="max-w-7xl w-full h-auto text-secondary-100 flex flex-col items-center bg-white mx-5 my-10 rounded-2xl shadow-md">
           <div className="w-full h-14 flex justify-between">
-            <Link to="/dashboard">
+            <Link to="/developers">
               <ArrowLeftIcon className="w-8 text-secondary-100 m-2" />
             </Link>
           </div>
@@ -94,7 +93,7 @@ function Profile({ viewProfile }) {
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-64 h-24 border-2 border-secondary-200 text-secondary-100 my-3 flex flex-col bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
+                className="w-64 min-h-3rem h-full border-2 border-secondary-200 text-secondary-100 my-3 flex flex-col bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
               >
                 <h2 className="font-nunito text-2xl p-2">{project.name}</h2>
                 <h3 className="font-pop text-sm px-2">{project.desc}</h3>
@@ -110,7 +109,7 @@ function Profile({ viewProfile }) {
                 href={blog.link}
                 target="_blank"
                 rel="noreferrer"
-                className="w-64 min-h-30 h-full border-2 border-secondary-200 text-secondary-100 my-3 text-center bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
+                className="w-64 min-h-3rem h-full border-2 border-secondary-200 text-secondary-100 my-3 text-center bg-white rounded transform cursor-pointer hover:bg-secondary-300 hover:scale-105 transition-all"
               >
                 <h2 className="font-pop text-xl p-2">{blog.name}</h2>
               </a>
@@ -123,17 +122,21 @@ function Profile({ viewProfile }) {
           <h2 className="font-nunito text-secondary-100 text-xl">
             Connect with me!
           </h2>
-          <div className="max-w-sm w-full h-auto my-10 grid grid-cols-4 justify-items-center mr:grid-cols-3">
-            {fetchedProfile.socialMedia.map((item, key) => (
-              <SocialIcon
-                key={key}
-                className="m-5"
-                network={item.name}
-                url={item.link}
-                target="_blank"
-                bgColor={item.name === "instagram" ? "#833AB4" : null}
-              ></SocialIcon>
-            ))}
+          <div className="max-w-sm w-full h-auto my-10 grid grid-cols-3 justify-items-center mr:grid-cols-3">
+            {fetchedProfile.socialMedia.map((item, key) => {
+              if (item.link !== "") {
+                return (
+                  <SocialIcon
+                    key={key}
+                    className="m-5"
+                    network={item.name}
+                    url={item.link}
+                    target="_blank"
+                    bgColor={item.name === "instagram" ? "#833AB4" : null}
+                  ></SocialIcon>
+                );
+              }
+            })}
           </div>
         </div>
       ) : null}

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { storeUserProfile } from "../components/database";
 import { toast, Toaster } from "react-hot-toast";
 import { useAuth0 } from "@auth0/auth0-react";
 import fire from "../components/firebase";
 import Form from "./Form";
 
-const storage = fire.storage();
 const db = fire.firestore();
 
 function CreateProfile() {
@@ -82,8 +80,6 @@ function CreateProfile() {
     ],
   });
 
-  console.log(profileData);
-
   const techStack = [
     "HTML",
     "CSS",
@@ -107,8 +103,6 @@ function CreateProfile() {
     "Firebase",
     "MongoDB",
   ];
-
-  console.log(profileData);
 
   useEffect(() => {
     toast(
@@ -142,7 +136,6 @@ function CreateProfile() {
       reader.readAsDataURL(e.target.files[0]);
     }
 
-    // console.log(renamedImageFile);
     setImage(true);
   }
 
@@ -191,38 +184,39 @@ function CreateProfile() {
 
   async function handleSubmit() {
     //store user profileData
-    // storeUserProfile(profileData, ProfilePicture, user);
     try {
-      await db.collection(user.nickname).doc("profile").set(userProfile);
-
       if (ProfilePicture) {
-        const storageRef = storage.ref();
-        const imageRef = storageRef.child(ProfilePicture.name);
-        imageRef.put(ProfilePicture).then(console.log("Image Uplaoded"));
+        var storageRef = fire.storage().ref();
+        var fileRef = storageRef.child(user.nickname);
+        await fileRef.put(ProfilePicture).then((snapshot) => {
+          console.log("Image Uploaded");
+        });
       }
+
+      // var path = storage.ref(user.nickname);
+      await db
+        .collection("users")
+        .doc(user.nickname)
+        .update({
+          picture: await fileRef.getDownloadURL(),
+          name: profileData.name,
+          currentPosition: profileData.currentPosition,
+          isProfileCreated: true,
+        })
+        .then(() => {
+          console.log("Doc Updated");
+        });
+
+      await db
+        .collection(user.nickname)
+        .doc("profile")
+        .set(profileData)
+        .then(() => {
+          console.log("Profile Saved");
+        });
     } catch (err) {
       console.log(err);
     }
-
-    //replace the default profileImage with Uploaded one's url
-    var path = storage.ref(user.nickname);
-    await db
-      .collection("users")
-      .doc(user.nickname)
-      .update({ picture: await path.getDownloadURL() });
-
-    //
-    await db
-      .collection("users")
-      .doc(user.nickname)
-      .update({
-        name: profileData.name,
-        currentPosition: profileData.currentPosition,
-        isProfileCreated: true,
-      })
-      .then("Doc Updated");
-
-    toast.success("Successfully submitted.");
   }
 
   function GenerateDate() {

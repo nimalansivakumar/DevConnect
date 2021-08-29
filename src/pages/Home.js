@@ -35,7 +35,7 @@ function Home() {
           What's DevConnect?
         </h1>
         <div className="w-full flex justify-around items-center m-10 mr:flex-col">
-          <div className="w-1/4 flex flex-col">
+          <div className="w-1/4 flex flex-col mr:w-3/4">
             <h1 className="font-pop text-4xl py-2">
               Take a look on<br></br> Developer Profiles.
             </h1>
@@ -55,7 +55,7 @@ function Home() {
             alt="HomeImage"
             className="max-w-sm w-full p-5"
           ></img>
-          <div className="w-1/4 flex flex-col">
+          <div className="w-1/4 flex flex-col mr:w-3/4">
             <h1 className="font-pop text-4xl py-2">
               Connect with the<br></br>Developer.
             </h1>

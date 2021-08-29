@@ -4,9 +4,10 @@ import Navbar from "./pages/Navbar";
 import CreateProfile from "./pages/CreateProfile";
 import Home from "./pages/Home";
 import ShowProfile from "./pages/ShowProfile";
+import Developers from "./pages/Developers";
+import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import { useAuth0 } from "@auth0/auth0-react";
-import Dashboard from "./pages/Dashboard";
 import toast, { Toaster } from "react-hot-toast";
 import fire from "./components/firebase";
 
@@ -32,16 +33,13 @@ function App() {
   }
 
   const addNewUser = async () => {
-    await db
-      .collection("users")
-      .doc(user.nickname)
-      .set({
-        username: user.nickname,
-        email: user.email,
-        picture: user.picture,
-        isProfileCreated: false,
-      })
-      // .then(console.log("Document Added Successfully"));
+    await db.collection("users").doc(user.nickname).set({
+      username: user.nickname,
+      email: user.email,
+      picture: user.picture,
+      isProfileCreated: false,
+    });
+    // .then(console.log("Document Added Successfully"));
   };
 
   useEffect(() => {
@@ -60,6 +58,16 @@ function App() {
           isAuthenticated={isAuthenticated}
           path="/dashboard"
           component={() => <Dashboard whosProfile={whosProfile}></Dashboard>}
+        ></PrivateRoute>
+        <PrivateRoute
+          isAuthenticated={isAuthenticated}
+          path="/developers"
+          component={() => <Developers whosProfile={whosProfile}></Developers>}
+        ></PrivateRoute>
+        <PrivateRoute
+          isAuthenticated={isAuthenticated}
+          path="/create-profile"
+          component={CreateProfile}
         ></PrivateRoute>
         <PrivateRoute
           isAuthenticated={isAuthenticated}

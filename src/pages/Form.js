@@ -14,6 +14,8 @@ function Form({
   showImage,
   GenerateDate,
 }) {
+
+  console.log(profileData)
   return (
     <div className="w-full h-auto bg-secondary-300 flex items-center justify-center">
       <Toaster></Toaster>
@@ -22,12 +24,6 @@ function Form({
           <Link to="/dashboard">
             <ArrowLeftIcon className="w-8 text-secondary-100 m-2" />
           </Link>
-          <button
-            className="w-24 h-10 m-3 flex bg-primary rounded text-white font-pop justify-around items-center cursor-pointer"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
         </div>
 
         <div className="w-44 h-44 m-5 bg-fade flex flex-col justify-center items-center cursor-pointer rounded-full">
@@ -77,14 +73,19 @@ function Form({
               e.preventDefault();
               if (profileData.tags.length < 3) {
                 var tagName = document.getElementById("tagInput");
-                profileSetter({
-                  ...profileData,
-                  tags: [...profileData.tags, tagName.value],
-                });
-                toast.success(`${tagName.value} added.`);
-                tagName.value = "";
+                if (tagName.value === "") {
+                  toast.error("Type something");
+                } else {
+                  profileSetter({
+                    ...profileData,
+                    tags: [...profileData.tags, tagName.value],
+                  });
+                  toast.success(`${tagName.value} added.`);
+                  tagName.value = "";
+                }
               } else {
                 toast.error("Maximum 3 tags are allowed.");
+                tagName.value = "";
               }
             }}
           >
@@ -346,6 +347,18 @@ function Form({
             }}
           ></input>
         </div>
+        <button
+          className="w-24 h-10 m-3 flex bg-primary rounded text-white font-pop justify-around items-center cursor-pointer"
+          onClick={() => {
+            toast.promise(handleSubmit(), {
+              loading: "Saving...",
+              success: <b>Saved Successfully!</b>,
+              error: <b>Could not save.</b>,
+            });
+          }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
